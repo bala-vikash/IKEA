@@ -2,7 +2,9 @@
   "name": "hackathon",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test" : "npx playwright test tests/main.spec.j --project chromium --headed" 
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bala-vikash/IKEA-Automation.git"
