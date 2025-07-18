@@ -27,7 +27,18 @@ export class Homepage {
         await this.page.waitForLoadState("networkidle");
         await expect(this.page).toHaveTitle("IKEA India-Affordable home furniture, designs & ideas - IKEA");
     }
-    
+
+    //This method fetches all the active links and collections displayed on the webpage
+    async getCollections() {
+    const collectionLocator = this.page.locator(this.collections);
+    const collectionsCount = await collectionLocator.count();
+
+    for (let i = 1; i < collectionsCount; i++) {
+        const text = await collectionLocator.nth(i).textContent();
+        console.log(text?.trim());
+    }
+    }
+
     //This method searches for Bookshelves
     async searchBookShelves() {
         await this.searchBar.click();
@@ -40,17 +51,6 @@ export class Homepage {
         await this.searchBar.click();
         await this.searchBar.fill("Study Chair");
         await this.page.keyboard.press("Enter");
-    }
-
-    //This method fetches all the active links and collections displayed on the webpage
-    async getCollections() {
-    const collectionLocator = this.page.locator(this.collections);
-    const collectionsCount = await collectionLocator.count();
-
-    for (let i = 1; i < collectionsCount; i++) {
-        const text = await collectionLocator.nth(i).textContent();
-        console.log(text?.trim());
-    }
     }
 
     // Clicks on gift carousel
