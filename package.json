@@ -4,6 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "npx playwright test tests/main.spec.j --project chromium --headed"
+    
   },
   "repository": {
     "type": "git",

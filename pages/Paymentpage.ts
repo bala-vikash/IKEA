@@ -1,4 +1,5 @@
 import { Page, Locator, expect } from "@playwright/test";
+import { takeTimestampedScreenshot } from "../utils/screenshotUtil";
 
 export class PaymentPage {
   private page: Page;
@@ -25,9 +26,6 @@ export class PaymentPage {
     this.validateCardNumberMessage = page.locator("//span[text()='Invalid Card Number']");
   }
 
-  /**
-   * Fills out the debit card form with provided details.
-   */
   async fillCardDetails(cardNum: string, cardName: string, cvv: string) {
     await this.debitCard.click();
     await this.selectCardType.click();
@@ -39,17 +37,16 @@ export class PaymentPage {
     await this.cvv.fill(cvv);
   }
 
-  /**
-   * Submits the payment form by clicking Pay Now.
-   */
   async submitPayment() {
     await this.payNowButton.click();
   }
 
-  /**
-   * Validates that the "Invalid Card Number" message is shown.
-   */
   async validateCardNumberError() {
-    await expect(this.validateCardNumberMessage).toHaveText("Invalid Card Number");
+    try {
+      await expect(this.validateCardNumberMessage).toHaveText("Invalid Card Number");
+      await takeTimestampedScreenshot(this.page, "InvalidCard");
+    } catch (error) {
+      throw new Error(`Validation failed and screenshot was not captured: ${error}`);
+    }
   }
 }
