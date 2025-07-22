@@ -1,6 +1,6 @@
 import { test } from "@playwright/test";
 import { Homepage } from "../pages/Homepage";
-import { BookshelvesPage } from "../pages/BookshelvesPage";
+import { BookshelvesPage } from "../pages/BookShelvesPage";
 
 test.describe("@sanity Homepage & Search Flow", () => {
   let homepage: Homepage;
