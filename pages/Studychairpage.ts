@@ -1,7 +1,7 @@
 import { Page, Locator, expect } from '@playwright/test';
 import * as fs from 'fs';
 import * as path from 'path';
-import convertToCSV from '../utils/convertToCSV';
+import convertToCSV from '../utils/converttoCSV';
 import getTimestamp from '../utils/getTimestamp';
 
 export class StudyPage {
