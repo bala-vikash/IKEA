@@ -63,6 +63,12 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name : Install Allure
+        run : npm install -g allure-playwright 
+      
+      - name : Install allure commandline
+        run : npm install allure-commandline --save-dev
+
       - name: Install Playwright
         run: npx playwright install --with-deps
 
@@ -95,6 +101,13 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name : Install Allure
+        run : npm install -g allure-playwright 
+      
+      - name : Install allure commandline
+        run : npm install allure-commandline --save-dev
+        
 
       - name: Install Playwright
         run: npx playwright install --with-deps
