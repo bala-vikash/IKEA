@@ -2,7 +2,7 @@ import { test } from "@playwright/test";
 import { Homepage } from "../pages/Homepage";
 import { BookshelvesPage } from "../pages/BookShelvesPage";
 import { GiftcardPage } from "../pages/GiftcardPage";
-import { PaymentPage } from "../pages/PaymentPage";
+import { PaymentPage } from "../pages/Paymentpage";
 import { StudyPage } from "../pages/Studychairpage";
 
 test("Complete IKEA automation flow", async ({ page }) => {
