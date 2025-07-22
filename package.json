@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test" : "npx playwright test tests/main.spec.j --project chromium --headed" 
+    "test": "npx playwright test tests/main.spec.j --project chromium --headed"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,7 @@
   "description": "",
   "devDependencies": {
     "@playwright/test": "^1.54.1",
-    "@types/node": "^24.0.14"
+    "@types/node": "^24.0.14",
+    "allure-playwright": "^3.3.2"
   }
 }
