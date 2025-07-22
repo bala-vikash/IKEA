@@ -1,6 +1,6 @@
 import { test } from "@playwright/test";
 import { Homepage } from "../pages/Homepage";
-import { BookshelvesPage } from "../pages/BookshelvesPage";
+import { BookshelvesPage } from "../pages/BookShelvesPage";
 import { GiftcardPage } from "../pages/GiftcardPage";
 import { PaymentPage } from "../pages/PaymentPage";
 import { StudyPage } from "../pages/Studychairpage";
