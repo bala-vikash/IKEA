@@ -1,10 +1,10 @@
-import { test } from "@playwright/test";
-import { Homepage } from "../pages/Homepage";
-import { BookshelvesPage } from "../pages/BookShelvesPage";
+const { test } = require("@playwright/test");
+const { Homepage } = require("../pages/Homepage");
+const { BookshelvesPage } = require("../pages/BookShelvesPage");
 
 test.describe("@sanity Homepage & Search Flow", () => {
-  let homepage: Homepage;
-  let booksPage: BookshelvesPage;
+  let homepage;
+  let booksPage;
 
   test.beforeEach(async ({ page }) => {
     homepage = new Homepage(page);
