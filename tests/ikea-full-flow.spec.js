@@ -1,9 +1,9 @@
-import { test } from "@playwright/test";
-import { Homepage } from "../pages/Homepage";
-import { BookshelvesPage } from "../pages/BookShelvesPage";
-import { GiftcardPage } from "../pages/GiftcardPage";
-import { PaymentPage } from "../pages/Paymentpage";
-import { StudyPage } from "../pages/Studychairpage";
+const { test } = require("@playwright/test");
+const { Homepage } = require("../pages/Homepage");
+const { BookshelvesPage } = require("../pages/BookShelvesPage");
+const { GiftcardPage } = require("../pages/GiftcardPage");
+const { PaymentPage } = require("../pages/Paymentpage");
+const { StudyPage } = require("../pages/Studychairpage");
 
 test("Complete IKEA automation flow", async ({ page }) => {
   const homepage = new Homepage(page);
@@ -27,7 +27,7 @@ test("Complete IKEA automation flow", async ({ page }) => {
   await studypage.viewAll();
   await studypage.chairCards();
   //await homepage.searchStudyChair();
-//   await booksPage.clickNextButton();
+  // await booksPage.clickNextButton();
 
   // Gift card flow via homepage
   await homepage.navigate();

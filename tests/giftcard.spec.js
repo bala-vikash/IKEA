@@ -1,10 +1,10 @@
-import { test } from "@playwright/test";
-import { Homepage } from "../pages/Homepage";
-import { GiftcardPage } from "../pages/GiftcardPage";
+const { test } = require("@playwright/test");
+const { Homepage } = require("../pages/Homepage");
+const { GiftcardPage } = require("../pages/GiftcardPage");
 
 test.describe("@smoke Gift Card Purchase Flow", () => {
-  let homepage: Homepage;
-  let giftcard: GiftcardPage;
+  let homepage;
+  let giftcard;
 
   test.beforeEach(async ({ page }) => {
     homepage = new Homepage(page);

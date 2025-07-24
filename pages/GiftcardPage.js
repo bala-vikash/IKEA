@@ -1,27 +1,5 @@
-import { Page, Locator } from "@playwright/test";
-
-export class GiftcardPage {
-  private page: Page;
-  private buyGiftcard: Locator;
-  private amount1000: Locator;
-  private amount5000: Locator;
-  private amount10000: Locator;
-  private forSomeone: Locator;
-  private forMyself: Locator;
-  private firstName: Locator;
-  private lastName: Locator;
-  private email: Locator;
-  private confirmEmail: Locator;
-  private addToCart: Locator;
-  private continue: Locator;
-  private yourFirstname: Locator;
-  private yourLastname: Locator;
-  private yourEmail: Locator;
-  private yourConfirmEmail: Locator;
-  private terms: Locator;
-  private continueButton: Locator;
-
-  constructor(page: Page) {
+class GiftcardPage {
+  constructor(page) {
     this.page = page;
     this.buyGiftcard = page.locator("//span[text()='Buy IKEA Gift Card online']");
     this.amount1000 = page.getByText("Rs 1,000");
@@ -52,13 +30,13 @@ export class GiftcardPage {
     await this.buyGiftcard.click();
   }
 
-  async selectGiftCardAmount(amount: number) {
+  async selectGiftCardAmount(amount) {
     if (amount === 1000) await this.amount1000.click();
     else if (amount === 5000) await this.amount5000.click();
     else if (amount === 10000) await this.amount10000.click();
   }
 
-  async fillDetails(name: string, lname: string, email: string, cEmail: string, type: "myself" | "someone") {
+  async fillDetails(name, lname, email, cEmail, type) {
     if (type === "myself") {
       await this.forMyself.click();
       await this.firstName.fill(name);
@@ -73,7 +51,7 @@ export class GiftcardPage {
     await this.continue.click();
   }
 
-  async yourDetails(yFname: string, yLname: string, yEmail: string, yCemail: string) {
+  async yourDetails(yFname, yLname, yEmail, yCemail) {
     await this.yourFirstname.fill(yFname);
     await this.yourLastname.fill(yLname);
     await this.yourEmail.fill(yEmail);
@@ -82,3 +60,4 @@ export class GiftcardPage {
     await this.continueButton.click();
   }
 }
+module.exports = { GiftcardPage };

@@ -1,17 +1,11 @@
-import { Page, Locator, expect } from "@playwright/test";
-import * as fs from "fs";
-import * as path from "path";
-import convertToCSV from "../utils/converttoCSV";
-import getTimestamp from "../utils/getTimestamp";
+const { expect } = require("@playwright/test");
+const fs = require("fs");
+const path = require("path");
+const convertToCSV = require("../utils/converttoCSV");
+const getTimestamp = require("../utils/getTimestamp");
 
-export class Homepage {
-  private page: Page;
-  private url: string;
-  private searchBar: Locator;
-  private gift: Locator;
-  private collections: Locator;
-
-  constructor(page: Page) {
+class Homepage {
+  constructor(page) {
     this.page = page;
     this.url = "https://www.ikea.com/in/en/";
     this.searchBar = page.locator("#ikea-search-input");
@@ -32,25 +26,19 @@ export class Homepage {
 
   async getCollections() {
     const count = await this.collections.count();
-    const data: { name: string }[] = [];
-
+    const data = [];
     for (let i = 0; i < count; i++) {
       const text = await this.collections.nth(i).textContent();
       if (text) {
         data.push({ name: text.trim() });
       }
     }
-
     const csvContent = convertToCSV(data);
     const filename = `collections_${getTimestamp()}.csv`;
-
-    //  Create 'output' folder if it doesn't exist
     const outputDir = path.join(__dirname, "..", "output");
     if (!fs.existsSync(outputDir)) {
       fs.mkdirSync(outputDir, { recursive: true });
     }
-
-    //  Save CSV into the 'output' folder
     const filePath = path.join(outputDir, filename);
     fs.writeFileSync(filePath, csvContent, "utf8");
   }
@@ -71,3 +59,5 @@ export class Homepage {
     await this.gift.click();
   }
 }
+
+module.exports = { Homepage };

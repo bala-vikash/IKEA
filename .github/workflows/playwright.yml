@@ -34,7 +34,7 @@ jobs:
         run: npx playwright install --with-deps
 
       - name: Run Full Flow Test with Allure
-        run: npx playwright test ikea-full-flow.spec.ts --project chromium --reporter=line,allure-playwright
+        run: npx playwright test ikea-full-flow.spec.js --project chromium --reporter=line,allure-playwright
 
       - name: Generate Allure Report
         run: npx allure generate ./allure-results --clean -o ./allure-report

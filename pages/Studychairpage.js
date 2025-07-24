@@ -1,19 +1,11 @@
-import { Page, Locator, expect } from '@playwright/test';
-import * as fs from 'fs';
-import * as path from 'path';
-import convertToCSV from '../utils/converttoCSV';
-import getTimestamp from '../utils/getTimestamp';
+const { expect } = require('@playwright/test');
+const fs = require('fs');
+const path = require('path');
+const convertToCSV = require('../utils/converttoCSV');
+const getTimestamp = require('../utils/getTimestamp');
 
-export class StudyPage {
-  private page: Page;
-  private searchBar: Locator;
-  private filters: Locator;
-  private customerRating: Locator;
-  private fourRating: Locator;
-  private viewButton: Locator;
-  private priceCards: Locator;
-
-  constructor(page: Page) {
+class StudyPage {
+  constructor(page) {
     this.page = page;
     this.searchBar = page.locator("//input[@id='ikea-search-input']");
     this.filters = page.getByRole("button", { name: "All filters" });
@@ -39,24 +31,22 @@ export class StudyPage {
     await this.viewButton.click();
   }
 
-  async chairCards(): Promise<void> {
-    const chairProducts: { title: string | null; price: string | null }[] = [];
-
+  async chairCards() {
+    const chairProducts = [];
     for (let i = 0; i < 3; i++) {
       const title = await this.priceCards.nth(i).locator(".plp-price-module__product-name").textContent();
       const price = await this.priceCards.nth(i).locator(".plp-price__sr-text").textContent();
       chairProducts.push({ title, price });
     }
-
     const csvData = convertToCSV(chairProducts);
     const timestamp = getTimestamp();
     const filePath = path.join(__dirname, '..', 'output', `study-chairs_${timestamp}.csv`);
-
     fs.mkdirSync(path.dirname(filePath), { recursive: true });
     fs.writeFileSync(filePath, csvData, 'utf8');
   }
 
-  async checkAssertions(): Promise<void> {
+  async checkAssertions() {
     await expect(this.page).toHaveURL('https://www.ikea.com/in/en/');
   }
 }
+module.exports = { StudyPage };

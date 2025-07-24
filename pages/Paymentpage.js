@@ -1,19 +1,8 @@
-import { Page, Locator, expect } from "@playwright/test";
-import { takeTimestampedScreenshot } from "../utils/screenshotUtil";
+const { expect } = require("@playwright/test");
+const { takeTimestampedScreenshot } = require("../utils/screenshotUtil");
 
-export class PaymentPage {
-  private page: Page;
-  private debitCard: Locator;
-  private selectCardType: Locator;
-  private cardNumber: Locator;
-  private cardHolderName: Locator;
-  private expiryMonth: Locator;
-  private expiryYear: Locator;
-  private cvv: Locator;
-  private payNowButton: Locator;
-  private validateCardNumberMessage: Locator;
-
-  constructor(page: Page) {
+class PaymentPage {
+  constructor(page) {
     this.page = page;
     this.debitCard = page.locator("#L02");
     this.selectCardType = page.locator("#selectDebitCard");
@@ -26,7 +15,7 @@ export class PaymentPage {
     this.validateCardNumberMessage = page.locator("//span[text()='Invalid Card Number']");
   }
 
-  async fillCardDetails(cardNum: string, cardName: string, cvv: string) {
+  async fillCardDetails(cardNum, cardName, cvv) {
     await this.debitCard.click();
     await this.selectCardType.click();
     await this.selectCardType.selectOption("RUPAY");
@@ -50,3 +39,4 @@ export class PaymentPage {
     }
   }
 }
+module.exports = { PaymentPage };
