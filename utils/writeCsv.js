@@ -3,6 +3,8 @@ const path = require('path');
  
 function writeCsv(data, filename) {
   if (!data?.length) return;
+  var a;
+  
  
   const outputDir = path.join(__dirname, '../output');
   const filePath = path.join(outputDir, filename);
