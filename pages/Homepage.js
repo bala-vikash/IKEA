@@ -47,7 +47,7 @@ class Homepage {
     await this.page.keyboard.press("Enter");
   }
  
-  async clickOnGift() {
+  async clickOnGift(){
     await this.gift.click();
   }
 }
